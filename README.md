@@ -30,18 +30,4 @@ pip install spotipy
 ```
 
 ### Project Execution Flow
-1. The **Spotify Data Pipeline** follows an **ETL (Extract, Transform, Load)** process using AWS services for collecting, processing, storing, and analyzing music data.
-
-2. **Data Extraction:** AWS Lambda retrieves songs, artists, albums, and playlist data from the Spotify API.
-
-3. **Raw Data Storage:** Extracted JSON data is stored in an Amazon S3 bucket.
-
-4. **Data Transformation:** AWS Lambda and Pandas clean and convert data into structured CSV format.
-
-5. **Data Cataloging:** AWS Glue Crawlers scan and catalog the structured data.
-
-6. **Processed Data Storage:** Transformed data is stored in a separate S3 bucket.
-
-7. **Data Querying & Analysis:** Amazon Athena enables SQL-based querying without moving data.
-
-8. **Metadata Management:** AWS Glue Data Catalog organizes and manages schema information.
+Extract Data (AWS Lambda calls Spotify API) → Store Raw Data (Save JSON in S3 - Raw Data Layer) → Transform Data (AWS Lambda & Pandas clean and convert to CSV) → Catalog Data (AWS Glue Crawler scans and updates AWS Glue Data Catalog) → Store Processed Data (Save structured data in another S3 bucket - Processed Data Layer) → Query Data (Amazon Athena runs SQL queries on processed data) → Manage Metadata (AWS Glue Data Catalog organizes schema)
